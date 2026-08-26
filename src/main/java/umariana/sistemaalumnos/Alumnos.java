@@ -1,4 +1,4 @@
-package com.mycompany.sistemaalumnos;
+package umariana.sistemaalumnos;
 
 /**
  *
@@ -66,6 +66,5 @@ public class Alumnos {
         }
         this.semestre = semestre;
     }
-    
     
 }

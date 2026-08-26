@@ -1,4 +1,4 @@
-package com.mycompany.sistemaalumnos;
+package umariana.sistemaalumnos;
 import java.util.Scanner;
 
 /**
