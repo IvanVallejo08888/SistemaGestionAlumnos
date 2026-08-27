@@ -2,7 +2,6 @@ package umariana.sistemaalumnos;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.*;
 
 /**
  *
@@ -12,6 +11,12 @@ public class GestionarAlumnos {
 
     Scanner lector = new Scanner(System.in);
     ArrayList<Alumnos> alumnos = new ArrayList<>();
+    File reporte = new File();
+
+    public GestionarAlumnos() {
+        reporte.LeerArchivo(alumnos);
+        System.out.println("Se cargaron " + alumnos.size() + " alumnos desde el archivo.");
+    }
 
     public void agregarAlumno() {
         System.out.println("====== Agregar Alumno ======\n");
@@ -34,6 +39,7 @@ public class GestionarAlumnos {
         }
         System.out.println("============================");
         alumnos.add(new Alumnos(cedula, nombre, apellido, edad, semestre));
+        reporte.EscribirTodos(alumnos);
 
     }
 
@@ -79,6 +85,7 @@ public class GestionarAlumnos {
             }
 
         }
+        reporte.EscribirTodos(alumnos);
     }
 
     public void EliminarAlumno() {
@@ -106,5 +113,6 @@ public class GestionarAlumnos {
                 }
             }
         }
+        reporte.EscribirTodos(alumnos);
     }
 }
