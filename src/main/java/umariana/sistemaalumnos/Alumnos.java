@@ -67,4 +67,13 @@ public class Alumnos {
         this.semestre = semestre;
     }
     
+    public String alineaTexto(){
+        return cedula + "," + nombre + "," + apellido + "," + edad + "," + semestre;
+    }
+    
+    @Override
+    public String toString() {
+        return "Cédula: " + cedula + " | Nombre: " + nombre + " " + apellido +
+               " | Edad: " + edad + " | Semestre: " + semestre;
+    }
 }

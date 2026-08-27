@@ -1,41 +1,44 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package umariana.sistemaalumnos;
+
 import java.io.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author Mflass
  */
 public class File {
     // ruta del archivo: ./java/data/ReporteAlumno.txt
-    
-    public void EscribirArchivo(String nombre, String apellido, int cedula, int edad, int semestre){
-        try(BufferedWriter texto = new BufferedWriter(new FileWriter("./java/data/ReporteAlumno.txt"))){
-            texto.write(cedula + "," + nombre + "," + apellido + "," + edad + "," + semestre);
-            texto.newLine();
-            
-            System.out.println("se ha escrito correctamente");
-        }catch(IOException e){
-            System.out.println("Error al escribir en el archivo: "+ e.getMessage());
-        }
-    }
-    
-    public void LeerArchivo(){
-        try(BufferedReader lector = new BufferedReader(new FileReader("./java/data/ReporteAlumno.txt"))){
-            String linea;
-            while((linea = lector.readLine()) != null){
-                String[] datos = linea.split(",");
-                System.out.println("Cedula: "+datos[0]+" | Nombre: "+datos[1]+" | Apellido: "+datos[2]+" | Edad: "+datos[3]+" | Semestre: "+datos[4]);
-                
+
+    public void EscribirTodos(ArrayList<Alumnos> alumnos) {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter("./java/data/ReporteAlumno.txt", false))) {
+            for (Alumnos miAlumno : alumnos) {
+                escritor.write(miAlumno.alineaTexto());
+                escritor.newLine();
             }
-        }catch(IOException e){
-            System.out.println("Error al leer el archivo: "+ e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error al escribir el archivo: " + e.getMessage());
         }
     }
-    
-    
-    
-    
+
+    public void LeerArchivo(ArrayList<Alumnos> alumnos) {
+        try (BufferedReader lector = new BufferedReader(new FileReader("./java/data/ReporteAlumno.txt"))) {
+            String linea;
+            while ((linea = lector.readLine()) != null) {
+                if(linea.isBlank()) continue;
+                String[] datos = linea.split(",");
+                int cedula = Integer.parseInt(datos[0]);
+                String nombre = datos[1];
+                String apellido = datos[2];
+                int edad = Integer.parseInt(datos[3]);
+                int semestre = Integer.parseInt(datos[4]);
+
+                alumnos.add(new Alumnos(cedula, nombre, apellido, edad, semestre));
+
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+
 }
