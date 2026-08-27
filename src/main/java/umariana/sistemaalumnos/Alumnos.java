@@ -12,10 +12,10 @@ public class Alumnos {
     private int semestre;
 
     public Alumnos(int cedula, String nombre, String apellido, int edad, int semestre) {
-        if(String.valueOf(Math.abs(cedula)).length() != 10){
+        if (String.valueOf(Math.abs(cedula)).length() != 10) {
             throw new IllegalArgumentException("numero de cedula no valida");
         }
-        if(edad < 0 || semestre < 0){
+        if (edad < 0 || semestre < 0) {
             throw new IllegalArgumentException("numeros ingresados invalidos ");
         }
         this.cedula = cedula;
@@ -50,7 +50,7 @@ public class Alumnos {
     }
 
     public void setEdad(int edad) {
-        if(edad < 0){
+        if (edad < 0) {
             throw new IllegalArgumentException("No se permiten numeros negativos");
         }
         this.edad = edad;
@@ -61,16 +61,16 @@ public class Alumnos {
     }
 
     public void setSemestre(int semestre) {
-        if(semestre < 0){
+        if (semestre < 0) {
             throw new IllegalArgumentException("No se permiten numeros negativos");
         }
         this.semestre = semestre;
     }
-    
-    public String alineaTexto(){
+
+    public String alineaTexto() {
         return cedula + "," + nombre + "," + apellido + "," + edad + "," + semestre;
     }
-    
+
     @Override
     public String toString() {
         return "Cédula: " + cedula + " | Nombre: " + nombre + " " + apellido +
